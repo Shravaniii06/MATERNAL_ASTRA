@@ -1,0 +1,2835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AstraMaternal | Care Intelligence</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --green: #2f8a63;
+    --green-dark: #246b4d;
+    --green-light: #e8f7f0;
+    --green-soft: #f4faf8;
+    --orange: #f07a52;
+    --text: #0f1f1a;
+    --muted: #5f746d;
+    --border: #d6e4de;
+    --background: #f7fbf9;
+    --white: #ffffff;
+    --shadow: 0 8px 24px rgba(24, 65, 50, 0.06);
+    --shadow-strong: 0 14px 40px rgba(24, 65, 50, 0.10);
+}
+
+body {
+    margin: 0;
+    font-family:
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color: var(--text);
+    background: var(--background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+    height: 88px;
+    background: var(--white);
+    border-bottom: 1px solid #e7efeb;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 120px;
+
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: saturate(1.2) blur(6px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo {
+    width: 44px;
+    height: 44px;
+
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 22px;
+
+    box-shadow: 0 8px 20px rgba(47, 138, 99, 0.22);
+}
+
+.brand-name {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #0d1a16;
+}
+
+.brand-name span {
+    color: var(--orange);
+}
+
+.brand-subtitle {
+    margin-top: 2px;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    color: #5f7a70;
+    text-transform: uppercase;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status {
+    height: 40px;
+    padding: 0 16px;
+
+    border: 1px solid var(--border);
+    border-radius: 22px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #5f756e;
+    font-size: 12px;
+    background: var(--green-soft);
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    background: #59c996;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(89, 201, 150, 0.18);
+}
+
+.icon-button {
+    width: 44px;
+    height: 40px;
+
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+    color: #4f635c;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.icon-button:hover {
+    background: var(--green-soft);
+    transform: translateY(-1px);
+}
+
+/* ================= MAIN ================= */
+
+.page {
+    max-width: 1560px;
+    margin: 0 auto;
+
+    padding: 24px 0 140px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 520px;
+    gap: 24px;
+}
+
+.left,
+.right {
+    min-width: 0;
+}
+
+/* ================= CARDS ================= */
+
+.card {
+    background: var(--white);
+    border-radius: 22px;
+
+    padding: 20px 20px 22px;
+
+    margin-bottom: 18px;
+
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(214, 228, 222, 0.5);
+}
+
+.section-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+
+    color: #4f6f63;
+
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    margin: 0;
+
+    font-size: 19px;
+    font-weight: 600;
+
+    letter-spacing: -0.25px;
+    color: #0e1c17;
+}
+
+.top-stage {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.stage-badge {
+    padding: 6px 12px;
+
+    border: 1px solid #d8e6e0;
+    border-radius: 16px;
+
+    font-size: 11px;
+    color: #4f6b61;
+    background: var(--green-soft);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* ================= STAGE ================= */
+
+.stage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.stage {
+    height: 58px;
+
+    background: #f8faf9;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 14px;
+
+    cursor: pointer;
+
+    color: #4f6a61;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.08s ease;
+}
+
+.stage:hover {
+    background: #f1f7f4;
+    transform: translateY(-1px);
+}
+
+.stage.active {
+    background: #e9f6f0;
+    border-color: #8fd3b5;
+    color: #1a7252;
+}
+
+.stage-number {
+    width: 28px;
+    height: 28px;
+
+    border-radius: 8px;
+
+    background: #eef5f2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 10px;
+
+    font-size: 11px;
+    color: #6f8a7f;
+    font-weight: 700;
+}
+
+.stage.active .stage-number {
+    background: #dff2e9;
+    color: #2f8a63;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1.5fr .65fr .8fr;
+    gap: 14px;
+}
+
+.field label {
+    display: block;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    color: #5a7068;
+
+    margin-bottom: 7px;
+    letter-spacing: 0.2px;
+}
+
+.input,
+.select {
+    width: 100%;
+    height: 46px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: #f9fbfa;
+
+    padding: 0 14px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #162a23;
+
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.input:focus,
+.select:focus {
+    border-color: #8bd0b1;
+    box-shadow: 0 0 0 3px rgba(139, 208, 177, 0.15);
+    background: #ffffff;
+}
+
+.weight {
+    margin-top: 16px;
+}
+
+/* ================= VITALS ================= */
+
+.telemetry {
+    height: 76px;
+
+    border: 1px solid #d9e8e1;
+    background: linear-gradient(180deg, #f4f9f7, #eef6f3);
+
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 14px;
+
+    margin: 16px 0 18px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.telemetry-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.telemetry-icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 11px;
+
+    background: #e6f4ed;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #2f8a63;
+    font-size: 20px;
+    box-shadow: 0 6px 14px rgba(47, 138, 99, 0.12);
+}
+
+.telemetry-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #2f6b56;
+    letter-spacing: 0.2px;
+}
+
+.telemetry-info {
+    margin-top: 3px;
+    color: #5b6f68;
+    font-size: 11px;
+}
+
+.manual {
+    background: var(--white);
+
+    border: 1px solid #d9e4df;
+    border-radius: 18px;
+
+    height: 36px;
+    padding: 0 13px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+    color: #4f635c;
+    transition: background 0.15s ease, transform 0.08s ease;
+}
+
+.manual:hover {
+    background: var(--green-soft);
+    transform: translateY(-1px);
+}
+
+.vitals-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.8fr 1.7fr;
+    gap: 14px;
+}
+
+.bp {
+    display: grid;
+    grid-template-columns: 1fr 12px 1fr;
+    align-items: center;
+    gap: 6px;
+}
+
+.bp-divider {
+    text-align: center;
+    color: #6f867d;
+    font-weight: 700;
+}
+
+.metric-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #5a7068;
+
+    margin-bottom: 7px;
+    letter-spacing: 0.2px;
+}
+
+.glucose {
+    margin-top: 16px;
+}
+
+/* ================= RIGHT ================= */
+
+.result-card {
+    min-height: 440px;
+
+    padding: 30px 28px;
+
+    margin-bottom: 18px;
+
+    background: linear-gradient(180deg, #ffffff, #fbfdfc);
+    border: 1px solid rgba(214, 228, 222, 0.6);
+}
+
+.result-icon {
+    width: 58px;
+    height: 58px;
+
+    background: linear-gradient(135deg, #e9f6f0, #dff2e9);
+
+    border-radius: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #267a56;
+    font-size: 26px;
+
+    margin-bottom: 24px;
+    box-shadow: 0 8px 18px rgba(38, 122, 86, 0.14);
+}
+
+.result-heading {
+    color: #5f7a70;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.6px;
+
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.result-title {
+    font-size: 17px;
+    margin-bottom: 12px;
+    color: #0f1f1a;
+    font-weight: 600;
+}
+
+.result-description {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #6a7f78;
+
+    max-width: 380px;
+    white-space: pre-line;
+}
+
+.steps {
+    margin-top: 24px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.steps.hidden {
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    display: none;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-bottom: 11px;
+
+    color: #5a6f67;
+    font-size: 12px;
+}
+
+.step-number {
+    width: 20px;
+    height: 20px;
+
+    background: #e5f2eb;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #2f8a63;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+/* ================= REMINDER ================= */
+
+.reminder-card {
+    padding: 18px 18px 20px;
+    background: linear-gradient(180deg, #ffffff, #fbfdfc);
+}
+
+.reminder-header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    margin-bottom: 16px;
+}
+
+.reminder-icon {
+    width: 40px;
+    height: 40px;
+
+    background: linear-gradient(135deg, #e9f6f0, #dff2e9);
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #2f8a63;
+    font-size: 20px;
+    box-shadow: 0 6px 14px rgba(47, 138, 99, 0.12);
+}
+
+.reminder-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f1f1a;
+}
+
+.reminder-sub {
+    margin-top: 2px;
+
+    font-size: 11px;
+    color: #6f857e;
+}
+
+.reminder-fields {
+    display: grid;
+    gap: 8px;
+}
+
+.reminder-input {
+    width: 100%;
+    height: 42px;
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    padding: 0 14px;
+
+    background: #f9fbfa;
+    font-size: 12px;
+
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.reminder-input:focus {
+    border-color: #8bd0b1;
+    box-shadow: 0 0 0 3px rgba(139, 208, 177, 0.15);
+    background: #ffffff;
+}
+
+.add-reminder {
+    margin-top: 4px;
+    height: 40px;
+
+    border: none;
+    border-radius: 18px;
+
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    color: white;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(47, 138, 99, 0.22);
+    transition: transform 0.08s ease, box-shadow 0.15s ease;
+}
+
+.add-reminder:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(47, 138, 99, 0.26);
+}
+
+.reminder-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.reminder-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 10px 11px;
+
+    border: 1px solid #dce6e2;
+    border-radius: 12px;
+
+    background: #f7fbf9;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.reminder-item:hover {
+    background: #f1f7f4;
+    border-color: #cddcd6;
+}
+
+.reminder-item-left {
+    min-width: 0;
+}
+
+.reminder-item-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: #2f5a4d;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.reminder-item-time {
+    margin-top: 3px;
+
+    color: #748a82;
+    font-size: 10px;
+}
+
+.delete-reminder {
+    width: 26px;
+    height: 26px;
+
+    border: 0;
+    border-radius: 8px;
+
+    color: #a65d50;
+    background: #fdebe7;
+
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.15s ease, transform 0.08s ease;
+}
+
+.delete-reminder:hover {
+    background: #f9d8d1;
+    transform: translateY(-1px);
+}
+
+body.dark .reminder-item {
+    border-color: #2e463d;
+    background: #1b2c26;
+}
+
+body.dark .reminder-item-title {
+    color: #dbeee5;
+}
+
+body.dark #reminderStatus {
+    color: #9fb4aa !important;
+}
+
+/* ================= SYMPTOMS ================= */
+
+.symptom-card {
+    padding-bottom: 22px;
+}
+
+.symptoms-intro {
+    color: #5f756e;
+    font-size: 12px;
+    margin: 8px 0 16px;
+    line-height: 1.45;
+}
+
+.symptoms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+}
+
+.symptom {
+    min-height: 72px;
+
+    border: 1px solid #dce5e1;
+    border-radius: 14px;
+
+    padding: 12px 12px;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 11px;
+
+    cursor: pointer;
+
+    transition: border-color 0.15s ease, background 0.15s ease, transform 0.08s ease;
+    background: #fbfdfc;
+}
+
+.symptom:hover {
+    border-color: #b6d6c7;
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+
+.symptom.selected {
+    border-color: #7ac7a5;
+    background: #eef8f3;
+}
+
+.checkbox {
+    appearance: none;
+
+    width: 19px;
+    height: 19px;
+
+    border: 1px solid #d3e0da;
+    border-radius: 5px;
+
+    margin: 0;
+
+    flex-shrink: 0;
+
+    cursor: pointer;
+
+    position: relative;
+    background: #ffffff;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.checkbox:checked {
+    background: #2f8a63;
+    border-color: #2f8a63;
+}
+
+.checkbox:checked::after {
+    content: "✓";
+
+    color: white;
+
+    position: absolute;
+    left: 4px;
+    top: 0px;
+
+    font-size: 13px;
+}
+
+.symptom-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f1f1a;
+}
+
+.symptom-hi {
+    margin-top: 3px;
+
+    color: #74867f;
+    font-size: 11px;
+}
+
+/* ================= ASK ASTRA ================= */
+
+.ask-card {
+    padding: 18px 18px 20px;
+}
+
+.ask-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 12px;
+}
+
+.ask-icon {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 9px;
+
+    background: linear-gradient(135deg, #e9f6f0, #dff2e9);
+
+    color: #2f8a63;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 6px 14px rgba(47, 138, 99, 0.12);
+}
+
+.ask-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #4f6f63;
+    text-transform: uppercase;
+}
+
+.ask-title {
+    font-size: 16px;
+    margin-top: 2px;
+    color: #0f1f1a;
+    font-weight: 600;
+}
+
+.chat-input-wrap {
+    display: flex;
+    align-items: center;
+
+    height: 48px;
+
+    border: 1px solid #dce6e1;
+
+    border-radius: 24px;
+
+    padding-left: 14px;
+
+    background: #f9fbfa;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.chat-input-wrap:focus-within {
+    border-color: #8bd0b1;
+    box-shadow: 0 0 0 3px rgba(139, 208, 177, 0.15);
+    background: #ffffff;
+}
+
+.chat-input {
+    flex: 1;
+
+    border: none;
+    outline: none;
+
+    font-size: 13px;
+    background: transparent;
+    color: #0f1f1a;
+}
+
+.mic {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    background: transparent;
+
+    font-size: 18px;
+    color: #4f635c;
+
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.15s ease, transform 0.08s ease;
+}
+
+.mic:hover {
+    background: var(--green-soft);
+    transform: translateY(-1px);
+}
+
+.voice-note {
+    color: #7a8f88;
+    font-size: 10px;
+    margin-top: 6px;
+}
+
+/* ================= BOTTOM ================= */
+
+.check-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 8px 0 0;
+}
+
+.offline {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.offline input {
+    margin-top: 3px;
+}
+
+.offline-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f1f1a;
+}
+
+.offline-text {
+    color: #74867f;
+    font-size: 10px;
+    margin-top: 4px;
+    line-height: 1.35;
+}
+
+.check-button {
+    height: 46px;
+
+    padding: 0 18px;
+
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    color: white;
+
+    border: none;
+    border-radius: 13px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 18px rgba(47, 138, 99, 0.22);
+    transition: transform 0.08s ease, box-shadow 0.15s ease;
+}
+
+.check-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(47, 138, 99, 0.26);
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #5f756e;
+
+    font-size: 10px;
+    letter-spacing: 0.2px;
+}
+
+/* ================= PREVIEW BAR ================= */
+
+.preview-bar {
+    position: fixed;
+
+    left: 50%;
+    bottom: 16px;
+
+    transform: translateX(-50%);
+
+    background: #1f2a3b;
+
+    color: white;
+
+    min-width: 860px;
+
+    height: 60px;
+
+    padding: 0 16px 0 22px;
+
+    border-radius: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    z-index: 100;
+
+    box-shadow: 0 12px 32px rgba(20, 30, 45, 0.26);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.preview-text {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.wake {
+    height: 40px;
+
+    padding: 0 18px;
+
+    border-radius: 20px;
+
+    border: none;
+
+    background: #18362e;
+
+    color: #4ce5b0;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.08s ease;
+}
+
+.wake:hover {
+    background: #144238;
+    transform: translateY(-1px);
+}
+
+/* ================= CHAT RESULT ================= */
+
+.chat-result {
+    display: none;
+
+    margin-top: 12px;
+
+    padding: 14px 15px;
+
+    border-radius: 14px;
+
+    background: #f0f8f4;
+
+    border: 1px solid #d9e9e1;
+
+    color: #31594b;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+.chat-result.show {
+    display: block;
+}
+
+/* ================= DARK MODE ================= */
+
+body.dark {
+    --background: #0f1714;
+    --text: #e9f4f0;
+    --muted: #9fb0a9;
+    --border: #2a3b34;
+}
+
+body.dark .header,
+body.dark .card,
+body.dark .input,
+body.dark .select,
+body.dark .chat-input-wrap,
+body.dark .reminder-input {
+    background: #16221e;
+    color: #e9f4f0;
+}
+
+body.dark .stage,
+body.dark .symptom {
+    background: #15201d;
+    border-color: #2b3f37;
+    color: #b9c9c3;
+}
+
+body.dark .stage.active,
+body.dark .symptom.selected {
+    background: #18362c;
+}
+
+body.dark .telemetry {
+    background: #162e27;
+    border-color: #2f5648;
+}
+
+body.dark .result-description,
+body.dark .symptom-hi,
+body.dark .voice-note,
+body.dark .offline-text {
+    color: #9ab0a8;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1200px) {
+
+    .header {
+        padding: 0 28px;
+    }
+
+    .page {
+        padding: 18px 28px 140px;
+    }
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-bar {
+        min-width: auto;
+        width: calc(100% - 36px);
+    }
+}
+
+@media (max-width: 700px) {
+
+    .header {
+        height: 72px;
+        padding: 0 14px;
+    }
+
+    .brand-name {
+        font-size: 16px;
+    }
+
+    .brand-subtitle {
+        font-size: 8px;
+    }
+
+    .status {
+        display: none;
+    }
+
+    .page {
+        padding: 12px 12px 130px;
+    }
+
+    .card {
+        padding: 16px 16px 18px;
+        border-radius: 18px;
+    }
+
+    .stage-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid,
+    .vitals-grid,
+    .symptoms {
+        grid-template-columns: 1fr;
+    }
+
+    .telemetry {
+        height: auto;
+        padding: 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .manual {
+        width: 100%;
+    }
+
+    .preview-bar {
+        width: calc(100% - 18px);
+        height: 56px;
+        bottom: 8px;
+    }
+
+    .preview-text {
+        font-size: 11px;
+    }
+
+    .wake {
+        font-size: 11px;
+        padding: 0 12px;
+    }
+
+    .check-row {
+        flex-direction: column;
+        gap: 14px;
+        align-items: stretch;
+    }
+
+    .check-button {
+        width: 100%;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 6px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+
+<header class="header">
+
+
+    <div class="brand">
+
+
+        <div class="logo">
+            ♡
+        </div>
+
+
+        <div>
+            <div class="brand-name">
+                Astra<span>Maternal</span>
+            </div>
+
+
+            <div class="brand-subtitle">
+                CARE INTELLIGENCE
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="header-actions">
+        <div class="status">
+            <span class="status-dot"></span>
+            Belt connected
+        </div>
+
+
+        <button class="icon-button" onclick="toggleLanguage()">
+            文&nbsp; हिन्दी
+        </button>
+
+
+        <button class="icon-button" onclick="toggleDark()">
+            ☾
+        </button>
+
+
+    </div>
+
+
+</header>
+
+
+
+<main class="page">
+<div class="layout">
+
+
+<!-- ================= LEFT COLUMN ================= -->
+
+
+<div class="left">
+
+
+<!-- ABOUT YOU -->
+
+
+<section class="card">
+
+
+    <div class="top-stage">
+
+
+        <div>
+            <div class="section-label">01 · ABOUT YOU</div>
+            <h2 class="section-title">Pregnancy stage</h2>
+        </div>
+
+
+        <div class="stage-badge" id="stageBadge">
+            3rd trimester · 28–40+ weeks
+        </div>
+
+
+    </div>
+
+
+
+    <div class="stage-grid">
+
+
+        <div class="stage" data-stage="first" data-weeks="12">
+            <div class="stage-number">01</div>
+            First
+        </div>
+
+
+        <div class="stage" data-stage="second" data-weeks="20">
+            <div class="stage-number">02</div>
+            Second
+        </div>
+
+
+        <div class="stage active" data-stage="third" data-weeks="30">
+            <div class="stage-number">03</div>
+            Third
+        </div>
+
+
+    </div>
+
+
+
+    <div class="form-grid">
+
+
+        <div class="field">
+            <label>Patient ID</label>
+            <input class="input" id="patientId" value="demo-mom">
+        </div>
+
+
+        <div class="field">
+            <label>Age</label>
+            <input class="input" id="ageInput" value="29" type="number">
+        </div>
+
+
+        <div class="field">
+            <label>Weeks pregnant</label>
+            <input class="input" id="weeksInput" value="30" type="number">
+        </div>
+
+
+    </div>
+
+
+
+    <div class="field weight">
+
+
+        <label>Weight trend</label>
+
+
+        <select class="select" id="weightTrend">
+            <option>Stable / स्थिर</option>
+            <option>Increasing / बढ़ रहा है</option>
+            <option>Decreasing / कम हो रहा है</option>
+        </select>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- LATEST VITALS -->
+
+
+<section class="card">
+
+
+    <div class="top-stage">
+
+
+        <div>
+            <div class="section-label">02 · LATEST VITALS</div>
+            <h2 class="section-title">What your body is telling us</h2>
+        </div>
+
+
+        <div style="color:#537a6d;font-size:11px;">
+            ◉ &nbsp;Belt telemetry
+        </div>
+
+
+    </div>
+
+
+
+    <div class="telemetry">
+
+
+        <div class="telemetry-left">
+
+
+            <div class="telemetry-icon">
+                〽
+            </div>
+
+
+            <div>
+
+
+                <div class="telemetry-title">
+                    Simulated belt is streaming
+                </div>
+
+
+                <div class="telemetry-info" id="beltInfo">
+                    HR 78 bpm · Temp 36.8°C · Movement normal
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <button class="manual" onclick="toggleBeltSimulation()">
+            Toggle belt
+        </button>
+
+
+    </div>
+
+
+
+    <div class="vitals-grid">
+
+
+        <div>
+
+
+            <div class="metric-label">
+                BP <small>mmHg</small>
+            </div>
+
+
+            <div class="bp">
+
+
+                <input class="input" id="bpSystolic" value="118">
+
+
+                <div class="bp-divider">/</div>
+
+
+                <input class="input" id="bpDiastolic" value="76">
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div>
+
+
+            <div class="metric-label">
+                ♡ Heart rate <small>bpm</small>
+            </div>
+
+
+            <input class="input" id="heartRate" value="78">
+
+
+        </div>
+
+
+
+        <div>
+
+
+            <div class="metric-label">
+                ♧ Temperature <small>°C</small>
+            </div>
+
+
+            <input class="input" id="temperature" value="36.8">
+
+
+        </div>
+
+
+        <div></div>
+
+
+    </div>
+
+
+
+    <div class="glucose">
+
+
+        <div class="metric-label">
+            Blood glucose
+        </div>
+
+
+        <div style="font-size:9px;color:#7a8d86;margin-bottom:6px;">
+            optional · mg/dL
+        </div>
+
+
+        <input class="input" id="glucoseInput" value="Not measured">
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- SYMPTOMS -->
+
+
+<section class="card symptom-card">
+
+
+    <div class="section-label">
+        03 · HOW ARE YOU FEELING?
+    </div>
+
+
+    <h2 class="section-title">
+        How are you feeling?
+    </h2>
+
+
+    <div class="symptoms-intro">
+        Select anything that applies. If you feel unsafe, seek urgent help now.
+    </div>
+
+
+
+    <div class="symptoms">
+
+
+        <label class="symptom">
+            <input class="checkbox" type="checkbox" value="Severe headache">
+            <div>
+                <div class="symptom-name">Severe headache</div>
+                <div class="symptom-hi">तेज़ सिरदर्द</div>
+            </div>
+        </label>
+
+
+
+        <label class="symptom">
+            <input class="checkbox" type="checkbox" value="Vision changes">
+            <div>
+                <div class="symptom-name">Vision changes</div>
+                <div class="symptom-hi">दृष्टि में बदलाव</div>
+            </div>
+        </label>
+
+
+
+        <label class="symptom">
+            <input class="checkbox" type="checkbox" value="Swelling">
+            <div>
+                <div class="symptom-name">Swelling</div>
+                <div class="symptom-hi">सूजन</div>
+            </div>
+        </label>
+
+
+
+        <label class="symptom">
+            <input class="checkbox" type="checkbox" value="Heavy bleeding">
+            <div>
+                <div class="symptom-name">Heavy bleeding</div>
+                <div class="symptom-hi">बहुत अधिक रक्तस्राव</div>
+            </div>
+        </label>
+
+
+
+        <label class="symptom">
+            <input class="checkbox" type="checkbox" value="Abdominal pain">
+            <div>
+                <div class="symptom-name">Abdominal pain</div>
+                <div class="symptom-hi">पेट में दर्द</div>
+            </div>
+        </label>
+
+
+
+        <label class="symptom">
+            <input class="checkbox" type="checkbox" value="Severe abdominal pain">
+            <div>
+                <div class="symptom-name">Severe abdominal pain</div>
+                <div class="symptom-hi">तेज़ पेट दर्द</div>
+            </div>
+        </label>
+
+
+
+        <label class="symptom">
+            <input class="checkbox" type="checkbox" value="Reduced fetal movement">
+            <div>
+                <div class="symptom-name">Reduced fetal movement</div>
+                <div class="symptom-hi">बच्चे की हलचल कम</div>
+            </div>
+        </label>
+
+
+
+        <label class="symptom">
+            <input class="checkbox" type="checkbox" value="Fever with chills">
+            <div>
+                <div class="symptom-name">Fever with chills</div>
+                <div class="symptom-hi">ठंड के साथ बुखार</div>
+            </div>
+        </label>
+
+
+
+        <label class="symptom">
+            <input class="checkbox" type="checkbox" value="Persistent vomiting">
+            <div>
+                <div class="symptom-name">Persistent vomiting</div>
+                <div class="symptom-hi">लगातार उल्टी</div>
+            </div>
+        </label>
+
+
+
+        <label class="symptom">
+            <input class="checkbox" type="checkbox" value="Fainting">
+            <div>
+                <div class="symptom-name">Fainting</div>
+                <div class="symptom-hi">बेहोशी</div>
+            </div>
+        </label>
+
+
+
+        <label class="symptom">
+            <input class="checkbox" type="checkbox" value="Seizure">
+            <div>
+                <div class="symptom-name">Seizure</div>
+                <div class="symptom-hi">दौरा</div>
+            </div>
+        </label>
+
+
+
+        <label class="symptom">
+            <input class="checkbox" type="checkbox" value="Chest pain">
+            <div>
+                <div class="symptom-name">Chest pain</div>
+                <div class="symptom-hi">सीने में दर्द</div>
+            </div>
+        </label>
+
+
+
+        <label class="symptom">
+
+
+            <input class="checkbox" type="checkbox" value="Severe shortness of breath">
+
+
+            <div>
+                <div class="symptom-name">
+                    Severe shortness of breath
+                </div>
+
+
+                <div class="symptom-hi">
+                    सांस लेने में बहुत तकलीफ़
+                </div>
+            </div>
+
+
+        </label>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ASK ASTRA -->
+
+
+<section class="card ask-card">
+
+
+    <div class="ask-header">
+
+
+        <div class="ask-icon">
+            ♡
+        </div>
+
+
+        <div>
+
+
+            <div class="ask-label">
+                04 · ASK ASTRA
+            </div>
+
+
+            <div class="ask-title">
+                Anything else on your mind?
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="chat-input-wrap">
+
+
+        <input
+            id="chatInput"
+            class="chat-input"
+            placeholder="For example: I have felt more tired today..."
+        >
+
+
+        <button class="mic" onclick="voiceDemo()">
+            ♩
+        </button>
+
+
+    </div>
+
+
+    <div class="voice-note">
+        ♩ Voice input simulated · responses stay short and simple
+    </div>
+
+
+    <div id="chatResult" class="chat-result"></div>
+
+
+</section>
+
+
+
+<!-- CHECK -->
+
+
+<div class="check-row">
+
+
+    <label class="offline">
+
+
+        <input type="checkbox" id="offline">
+
+
+        <div>
+
+
+            <div class="offline-title">
+                Simulate offline mode
+            </div>
+
+
+            <div class="offline-text">
+                Basic safety rules still run. This check will queue to sync later.
+            </div>
+
+
+        </div>
+
+
+    </label>
+
+
+
+    <button class="check-button" onclick="checkRisk()">
+        Check my risk&nbsp;&nbsp; →
+    </button>
+
+
+</div>
+
+
+
+<footer class="footer">
+
+
+    <div>
+        © AstraMaternal demo workspace
+    </div>
+
+
+    <div>
+        🛡 Privacy-first · no diagnosis · no prescriptions
+    </div>
+
+
+</footer>
+
+
+</div>
+
+
+
+<!-- ================= RIGHT COLUMN ================= -->
+
+
+<div class="right">
+
+
+    <section class="card result-card">
+
+
+        <div class="result-icon">
+            ♡
+        </div>
+
+
+        <div class="result-heading">
+            YOUR RESULT WILL APPEAR HERE
+        </div>
+
+
+        <div class="result-title" id="resultTitle">
+            Start with how you feel today.
+        </div>
+
+
+        <div class="result-description" id="resultDescription">
+            We use your stage, vitals, and symptoms to explain a safe
+            next step. This is support, not a diagnosis.
+        </div>
+
+
+
+        <div class="steps" id="stepsBox">
+
+
+            <div class="step">
+                <div class="step-number">1</div>
+                Share your details
+            </div>
+
+
+            <div class="step">
+                <div class="step-number">2</div>
+                Check your risk
+            </div>
+
+
+            <div class="step">
+                <div class="step-number">3</div>
+                Know what to do next
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <section class="card reminder-card">
+
+
+        <div class="reminder-header">
+
+
+            <div class="reminder-icon">
+                ♧
+            </div>
+
+
+            <div>
+
+
+                <div class="reminder-title">
+                    Stay on top of care
+                </div>
+
+
+                <div class="reminder-sub">
+                    Small reminders can make prenatal care easier.
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="reminder-fields">
+
+
+            <input
+                id="reminderName"
+                class="reminder-input"
+                placeholder="Reminder name (e.g., Check BP)"
+            >
+
+
+            <select id="reminderType" class="reminder-input">
+                <option value="BP check">BP check</option>
+                <option value="Medicine">Medicine / supplement</option>
+                <option value="Doctor appointment">Doctor appointment</option>
+                <option value="Glucose check">Glucose check</option>
+                <option value="Hydration">Hydration</option>
+            </select>
+
+
+            <input
+                id="reminderDateTime"
+                class="reminder-input"
+                type="datetime-local"
+            >
+
+
+            <button class="add-reminder" onclick="addReminder()">
+                + Add reminder
+            </button>
+
+
+        </div>
+
+
+        <div id="reminderStatus" style="
+            margin-top:8px;
+            color:#5f7970;
+            font-size:10px;
+        ">
+            Your reminders are saved privately on this device.
+        </div>
+
+
+        <div id="reminderList" class="reminder-list"></div>
+
+
+    </section>
+
+
+</div>
+
+
+</div>
+
+
+</main>
+
+
+
+<!-- ================= PREVIEW BAR ================= -->
+
+
+<div class="preview-bar">
+
+
+    <div class="preview-text">
+        Frontend Preview Only. Please wake servers to enable backend functionality.
+    </div>
+
+
+    <button class="wake" onclick="wakeServers()">
+        Wake up servers
+    </button>
+
+
+</div>
+
+
+
+<script>
+
+
+/* ================= LANGUAGE ================= */
+
+
+let hindi = false;
+
+
+function toggleLanguage() {
+
+
+    hindi = !hindi;
+
+
+    if (hindi) {
+        alert(
+            "हिंदी मोड सक्रिय है।\n\n" +
+            "यह डेमो इंटरफ़ेस अभी bilingual है।"
+        );
+    } else {
+        alert("English mode enabled.");
+    }
+}
+
+
+
+/* ================= DARK MODE ================= */
+
+
+function toggleDark() {
+
+
+    document.body.classList.toggle("dark");
+
+
+}
+
+
+
+/* ================= STAGE & WEEKS ================= */
+
+
+let currentStage = "third";
+let beltSimulationActive = true;
+
+
+document.querySelectorAll(".stage").forEach(stage => {
+
+
+    stage.addEventListener("click", () => {
+
+
+        document.querySelectorAll(".stage")
+            .forEach(x => x.classList.remove("active"));
+
+
+        stage.classList.add("active");
+
+
+        currentStage = stage.dataset.stage;
+        const weeks = stage.dataset.weeks;
+
+
+        // Update badge text
+        const badge = document.getElementById("stageBadge");
+        if (currentStage === "first") {
+            badge.innerText = "1st trimester · 1–12 weeks";
+        } else if (currentStage === "second") {
+            badge.innerText = "2nd trimester · 13–27 weeks";
+        } else {
+            badge.innerText = "3rd trimester · 28–40+ weeks";
+        }
+
+
+        // Update weeks input
+        const weeksInput = document.getElementById("weeksInput");
+        weeksInput.value = weeks;
+
+
+    });
+
+
+});
+
+
+
+/* ================= SYMPTOM SELECTION ================= */
+
+
+document.querySelectorAll(".symptom").forEach(item => {
+
+
+    const checkbox = item.querySelector(".checkbox");
+
+
+    checkbox.addEventListener("change", () => {
+
+
+        item.classList.toggle(
+            "selected",
+            checkbox.checked
+        );
+
+
+    });
+
+
+});
+
+
+
+/* ================= CHATBOT ================= */
+
+
+const chatInput = document.getElementById("chatInput");
+const chatResult = document.getElementById("chatResult");
+
+
+chatInput.addEventListener("keydown", function(e) {
+
+
+    if (e.key === "Enter") {
+        askAstra();
+    }
+
+
+});
+
+
+
+function askAstra() {
+
+
+    const message = chatInput.value.trim();
+
+
+    if (!message) {
+        return;
+    }
+
+
+    chatResult.classList.add("show");
+
+
+    // Include belt readings in chat if belt is active
+    let beltText = "";
+    if (beltSimulationActive) {
+        const hr = document.getElementById("heartRate").value;
+        const temp = document.getElementById("temperature").value;
+        beltText = `\n\nBelt telemetry: HR ${hr} bpm, Temp ${temp}°C, movement normal.`;
+    }
+
+
+    chatResult.innerHTML = `
+        <strong>Astra:</strong><br>
+        Thanks for sharing. Please continue monitoring how you feel.
+        If your symptoms become severe or you feel unsafe, seek urgent
+        medical care. This demo does not provide a diagnosis.
+        ${beltText}
+    `;
+
+
+}
+
+
+
+/* ================= VOICE ================= */
+
+
+function voiceDemo() {
+
+
+    chatInput.placeholder =
+        "Voice input simulated — type your message here...";
+
+
+    chatInput.focus();
+
+
+}
+
+
+
+/* ================= BELT SIMULATION ================= */
+
+
+function toggleBeltSimulation() {
+    beltSimulationActive = !beltSimulationActive;
+    const beltInfo = document.getElementById("beltInfo");
+
+    if (beltSimulationActive) {
+        beltInfo.innerText = "HR 78 bpm · Temp 36.8°C · Movement normal";
+        beltInfo.style.color = "#5b6f68";
+    } else {
+        beltInfo.innerText = "Belt disconnected · No telemetry";
+        beltInfo.style.color = "#a65d50";
+    }
+}
+
+
+
+/* ================= REMINDERS ================= */
+
+
+const REMINDER_STORAGE_KEY = "astra_maternal_reminders";
+
+
+function getReminders() {
+    const saved = localStorage.getItem(REMINDER_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+}
+
+
+function saveReminders(reminders) {
+    localStorage.setItem(
+        REMINDER_STORAGE_KEY,
+        JSON.stringify(reminders)
+    );
+}
+
+
+function formatReminderDate(dateTimeValue) {
+    if (!dateTimeValue) {
+        return "Time not selected";
+    }
+
+
+    const date = new Date(dateTimeValue);
+
+
+    return date.toLocaleString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit"
+    });
+}
+
+
+function renderReminders() {
+    const reminderList = document.getElementById("reminderList");
+    const reminderStatus = document.getElementById("reminderStatus");
+    const reminders = getReminders();
+
+
+    reminderList.innerHTML = "";
+
+
+    if (reminders.length === 0) {
+        reminderStatus.innerText =
+            "No reminders yet. Add one to stay on top of your care.";
+        return;
+    }
+
+
+    reminderStatus.innerText =
+        `${reminders.length} reminder(s) saved privately on this device.`;
+
+
+    reminders
+        .sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime))
+        .forEach((reminder) => {
+            const item = document.createElement("div");
+            item.className = "reminder-item";
+
+
+            item.innerHTML = `
+                <div class="reminder-item-left">
+                    <div class="reminder-item-title">
+                        ${reminder.name}
+                    </div>
+                    <div class="reminder-item-time">
+                        ${reminder.type} · ${formatReminderDate(reminder.dateTime)}
+                    </div>
+                </div>
+
+
+                <button
+                    class="delete-reminder"
+                    title="Delete reminder"
+                    onclick="deleteReminder('${reminder.id}')"
+                >
+                    ×
+                </button>
+            `;
+
+
+            reminderList.appendChild(item);
+        });
+}
+
+
+function addReminder() {
+    const nameInput = document.getElementById("reminderName");
+    const typeInput = document.getElementById("reminderType");
+    const dateTimeInput = document.getElementById("reminderDateTime");
+
+
+    const name = nameInput.value.trim();
+    const type = typeInput.value;
+    const dateTime = dateTimeInput.value;
+
+
+    if (!name) {
+        alert("Please enter a reminder name.");
+        nameInput.focus();
+        return;
+    }
+
+
+    if (!dateTime) {
+        alert("Please select the reminder date and time.");
+        dateTimeInput.focus();
+        return;
+    }
+
+
+    const reminders = getReminders();
+
+
+    reminders.push({
+        id: Date.now().toString(),
+        name: name,
+        type: type,
+        dateTime: dateTime,
+        createdAt: new Date().toISOString()
+    });
+
+
+    saveReminders(reminders);
+
+
+    nameInput.value = "";
+    dateTimeInput.value = "";
+
+
+    renderReminders();
+}
+
+
+function deleteReminder(reminderId) {
+    const reminders = getReminders().filter(
+        (reminder) => reminder.id !== reminderId
+    );
+
+
+    saveReminders(reminders);
+    renderReminders();
+}
+
+
+/* Run this once when the page opens */
+document.addEventListener("DOMContentLoaded", () => {
+    renderReminders();
+
+
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(8, 0, 0, 0);
+
+
+    const localDate = new Date(
+        tomorrow.getTime() - tomorrow.getTimezoneOffset() * 60000
+    )
+        .toISOString()
+        .slice(0, 16);
+
+
+    const dateTimeInput = document.getElementById("reminderDateTime");
+
+
+    if (dateTimeInput && !dateTimeInput.value) {
+        dateTimeInput.value = localDate;
+    }
+});
+
+
+
+/* ================= SYMPTOM DATA ================= */
+
+
+const symptomData = {
+    "Severe headache": {
+        riskLevel: "Moderate",
+        title: "Possible warning sign – monitor closely",
+        titleHi: "संभावित चेतावनी संकेत – बारीकी से निगरानी करें",
+        explanation: "Severe headaches in pregnancy can sometimes signal high blood pressure or preeclampsia, especially after 20 weeks.",
+        explanationHi: "गर्भावस्था में तेज़ सिरदर्द कभी-कभी उच्च रक्तचाप या प्री-एक्लेम्प्सिया का संकेत हो सकता है, खासकर 20 सप्ताह के बाद।",
+        precautions: [
+            "Rest in a quiet, dark room / शांत, अंधेरे कमरे में आराम करें",
+            "Stay hydrated / पानी पीते रहें",
+            "Check your blood pressure / अपना ब्लड प्रेशर चेक करें",
+            "Contact your doctor if it persists or worsens / यदि बना रहे या बढ़े तो डॉक्टर से संपर्क करें"
+        ]
+    },
+    "Vision changes": {
+        riskLevel: "High",
+        title: "Urgent assessment recommended",
+        titleHi: "तुरंत जाँच की सलाह",
+        explanation: "Blurry vision, spots, or light sensitivity can be signs of preeclampsia and need prompt evaluation.",
+        explanationHi: "धुंधली दृष्टि, चमक या रोशनी की संवेदनशीलता प्री-एक्लेम्प्सिया के लक्षण हो सकते हैं और तुरंत जाँच की आवश्यकता होती है।",
+        precautions: [
+            "Do not drive / गाड़ी न चलाएं",
+            "Sit or lie down immediately / तुरंत बैठ या लेट जाएं",
+            "Have someone stay with you / कोई आपके साथ रहे",
+            "Seek medical care today / आज ही चिकित्सा सहायता लें"
+        ]
+    },
+    "Swelling": {
+        riskLevel: "Low",
+        title: "Common, but watch for sudden increase",
+        titleHi: "आम, लेकिन अचानक बढ़ोतरी पर ध्यान दें",
+        explanation: "Mild swelling in feet and ankles is common. Sudden swelling in face or hands can be more serious.",
+        explanationHi: "पैरों और टखनों में हल्की सूजन आम है। चेहरे या हाथों में अचानक सूजन अधिक गंभीर हो सकती है।",
+        precautions: [
+            "Elevate your feet when resting / आराम करते समय पैर ऊपर रखें",
+            "Avoid standing for long periods / लंबे समय तक खड़े न रहें",
+            "Wear comfortable shoes / आरामदायक जूते पहनें",
+            "Contact your provider if swelling is sudden or severe / यदि सूजन अचानक या तेज़ हो तो प्रदाता से संपर्क करें"
+        ]
+    },
+    "Heavy bleeding": {
+        riskLevel: "High",
+        title: "Seek urgent medical care",
+        titleHi: "तुरंत चिकित्सा सहायता लें",
+        explanation: "Heavy bleeding in pregnancy is not normal and needs immediate assessment.",
+        explanationHi: "गर्भावस्था में भारी रक्तस्राव सामान्य नहीं है और तुरंत जाँच की आवश्यकता होती है।",
+        precautions: [
+            "Go to the nearest hospital or call emergency services / नज़दीकी अस्पताल जाएं या आपातकालीन सेवाओं को कॉल करें",
+            "Do not drive yourself / स्वयं गाड़ी न चलाएं",
+            "Keep track of how much bleeding / रक्तस्राव की मात्रा का ध्यान रखें"
+        ]
+    },
+    "Abdominal pain": {
+        riskLevel: "Low",
+        title: "Monitor and rest",
+        titleHi: "निगरानी करें और आराम करें",
+        explanation: "Mild abdominal pain can be normal due to stretching. Persistent or severe pain needs evaluation.",
+        explanationHi: "हल्का पेट दर्द खिंचाव के कारण सामान्य हो सकता है। लगातार या तेज़ दर्द की जाँच आवश्यक है।",
+        precautions: [
+            "Rest on your left side / अपनी बाईं ओर लेटकर आराम करें",
+            "Avoid heavy lifting / भारी वजन न उठाएं",
+            "Stay hydrated / पानी पीते रहें",
+            "Contact your provider if pain persists / यदि दर्द बना रहे तो प्रदाता से संपर्क करें"
+        ]
+    },
+    "Severe abdominal pain": {
+        riskLevel: "High",
+        title: "Urgent medical assessment needed",
+        titleHi: "तुरंत चिकित्सा जाँच आवश्यक",
+        explanation: "Severe abdominal pain can signal serious conditions and needs prompt evaluation.",
+        explanationHi: "तेज़ पेट दर्द गंभीर स्थितियों का संकेत हो सकता है और तुरंत जाँच की आवश्यकता होती है।",
+        precautions: [
+            "Seek medical care immediately / तुरंत चिकित्सा सहायता लें",
+            "Do not eat or drink until assessed / जाँच तक कुछ न खाएं-पीएं",
+            "Have someone accompany you / कोई आपके साथ जाए"
+        ]
+    },
+    "Reduced fetal movement": {
+        riskLevel: "Moderate",
+        title: "Contact your provider today",
+        titleHi: "आज ही अपने प्रदाता से संपर्क करें",
+        explanation: "A noticeable decrease in baby's movements should be checked on the same day.",
+        explanationHi: "बच्चे की हलचल में स्पष्ट कमी उसी दिन जाँची जानी चाहिए।",
+        precautions: [
+            "Lie on your left side and focus on movements / अपनी बाईं ओर लेटकर हलचल पर ध्यान दें",
+            "Drink something cold or sweet / कुछ ठंडा या मीठा पिएं",
+            "If still reduced after 1–2 hours, seek care / 1–2 घंटे बाद भी कम हो तो सहायता लें"
+        ]
+    },
+    "Fever with chills": {
+        riskLevel: "Moderate",
+        title: "Possible infection – get checked",
+        titleHi: "संभावित संक्रमण – जाँच कराएं",
+        explanation: "Fever in pregnancy can indicate infection and should be evaluated.",
+        explanationHi: "गर्भावस्था में बुखार संक्रमण का संकेत हो सकता है और जाँच की आवश्यकता होती है।",
+        precautions: [
+            "Rest and stay hydrated / आराम करें और पानी पीते रहें",
+            "Use a light blanket if shivering / कांप रहे हों तो हल्का कंबल उपयोग करें",
+            "Contact your provider for advice / सलाह के लिए प्रदाता से संपर्क करें",
+            "Seek care if fever is high or persistent / यदि बुखार अधिक या लगातार हो तो सहायता लें"
+        ]
+    },
+    "Persistent vomiting": {
+        riskLevel: "Moderate",
+        title: "Risk of dehydration – monitor closely",
+        titleHi: "निर्जलीकरण का जोखिम – बारीकी से निगरानी करें",
+        explanation: "Vomiting that does not stop can lead to dehydration and needs attention.",
+        explanationHi: "लगातार उल्टी से निर्जलीकरण हो सकता है और ध्यान देने की आवश्यकता होती है।",
+        precautions: [
+            "Take small sips of water or oral rehydration solution / पानी या ओआरएस के छोटे घूंट लें",
+            "Avoid heavy or spicy foods / भारी या मसालेदार भोजन से बचें",
+            "Contact your provider if you cannot keep fluids down / यदि तरल पदार्थ न रुकें तो प्रदाता से संपर्क करें"
+        ]
+    },
+    "Fainting": {
+        riskLevel: "Moderate",
+        title: "Seek medical evaluation",
+        titleHi: "चिकित्सा जाँच लें",
+        explanation: "Fainting can be due to low blood pressure, anemia, or other causes that need assessment.",
+        explanationHi: "बेहोशी कम ब्लड प्रेशर, एनीमिया या अन्य कारणों से हो सकती है जिसकी जाँच आवश्यक है।",
+        precautions: [
+            "Lie down with legs elevated / पैर ऊपर करके लेट जाएं",
+            "Do not stand up quickly / तुरंत खड़े न हों",
+            "Have someone stay with you / कोई आपके साथ रहे",
+            "Contact your provider / प्रदाता से संपर्क करें"
+        ]
+    },
+    "Seizure": {
+        riskLevel: "High",
+        title: "Medical emergency – call emergency services",
+        titleHi: "चिकित्सा आपातकाल – आपातकालीन सेवाओं को कॉल करें",
+        explanation: "Seizures in pregnancy are an emergency and need immediate hospital care.",
+        explanationHi: "गर्भावस्था में दौरा एक आपातकालीन स्थिति है और तुरंत अस्पताल की देखभाल की आवश्यकता होती है।",
+        precautions: [
+            "Call emergency services immediately / तुरंत आपातकालीन सेवाओं को कॉल करें",
+            "Keep the person safe from injury / व्यक्ति को चोट से सुरक्षित रखें",
+            "Do not put anything in the mouth / मुंह में कुछ न डालें",
+            "Time the seizure and stay with them / दौरे का समय नोट करें और साथ रहें"
+        ]
+    },
+    "Chest pain": {
+        riskLevel: "High",
+        title: "Urgent assessment needed",
+        titleHi: "तुरंत जाँच आवश्यक",
+        explanation: "Chest pain in pregnancy can have several causes and should be evaluated promptly.",
+        explanationHi: "गर्भावस्था में सीने में दर्द के कई कारण हो सकते हैं और तुरंत जाँच की आवश्यकता होती है।",
+        precautions: [
+            "Stop any activity and rest / कोई भी गतिविधि बंद करें और आराम करें",
+            "Seek medical care immediately / तुरंत चिकित्सा सहायता लें",
+            "Note any associated symptoms / अन्य लक्षणों को नोट करें"
+        ]
+    },
+    "Severe shortness of breath": {
+        riskLevel: "High",
+        title: "Seek urgent medical care",
+        titleHi: "तुरंत चिकित्सा सहायता लें",
+        explanation: "Severe breathlessness can signal heart or lung issues and needs prompt evaluation.",
+        explanationHi: "गंभीर सांस की तकलीफ दिल या फेफड़े की समस्या का संकेत हो सकती है और तुरंत जाँच की आवश्यकता होती है।",
+        precautions: [
+            "Sit upright and try to stay calm / सीधे बैठें और शांत रहने की कोशिश करें",
+            "Loosen tight clothing / कसकर पहने कपड़े ढीले करें",
+            "Seek medical care immediately / तुरंत चिकित्सा सहायता लें"
+        ]
+    }
+};
+
+
+// Risk level priority for calculation
+const riskPriority = {
+    "Low": 1,
+    "Moderate": 2,
+    "High": 3
+};
+
+
+
+/* ================= RISK ================= */
+
+
+async function checkRisk() {
+    const selectedCheckboxes = document.querySelectorAll(".symptom input:checked");
+    const selectedSymptoms = Array.from(selectedCheckboxes).map(cb => cb.value);
+
+
+    const resultTitle = document.getElementById("resultTitle");
+    const resultDescription = document.getElementById("resultDescription");
+    const stepsBox = document.getElementById("stepsBox");
+
+
+    // Get vitals
+    const bpSystolic = parseInt(document.getElementById("bpSystolic").value) || 0;
+    const bpDiastolic = parseInt(document.getElementById("bpDiastolic").value) || 0;
+    const heartRate = parseInt(document.getElementById("heartRate").value) || 0;
+    const temperature = parseFloat(document.getElementById("temperature").value) || 0;
+    const weeks = parseInt(document.getElementById("weeksInput").value) || 0;
+
+
+    // Try backend first
+    try {
+        const payload = {
+            stage: currentStage,
+            age: parseInt(document.getElementById("ageInput").value) || 29,
+            weeks: weeks,
+            weight_trend: document.getElementById("weightTrend").value.toLowerCase().includes("stable") ? "stable" :
+                          document.getElementById("weightTrend").value.toLowerCase().includes("increasing") ? "increasing" : "decreasing",
+            bp_systolic: bpSystolic,
+            bp_diastolic: bpDiastolic,
+            heart_rate: heartRate,
+            temperature: temperature,
+            glucose: document.getElementById("glucoseInput").value.toLowerCase().includes("not measured") ? null :
+                       parseFloat(document.getElementById("glucoseInput").value) || null,
+            symptoms: selectedSymptoms
+        };
+
+
+        const response = await fetch("http://127.0.0.1:8000/api/check", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+
+        if (response.ok) {
+            const data = await response.json();
+
+
+            // Show risk level from backend if available
+            if (data.risk_level) {
+                resultTitle.innerText = "Risk Level: " + data.risk_level;
+            } else {
+                resultTitle.innerText = "Risk assessed";
+            }
+
+
+            resultDescription.innerText =
+                data.explanation ||
+                "Risk assessment completed using backend logic.";
+
+
+            // Hide steps after result
+            stepsBox.classList.add("hidden");
+
+
+            // Show belt info in result if active
+            if (beltSimulationActive) {
+                resultDescription.innerText +=
+                    `\n\nBelt telemetry: HR ${heartRate} bpm, Temp ${temperature}°C.`;
+            }
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+
+            return;
+        }
+
+
+    } catch (e) {
+        // Backend failed, fall back to local demo logic
+    }
+
+
+    // Local demo fallback
+    if (selectedSymptoms.length === 0) {
+        resultTitle.innerText = "Risk Level: Low";
+        resultDescription.innerText =
+            "Based on the information entered in this demo, there are no selected warning symptoms. Continue routine prenatal care and follow your healthcare professional's advice.";
+        stepsBox.classList.add("hidden");
+    } else {
+        // Calculate highest risk level from selected symptoms
+        let highestRisk = "Low";
+        let highestPriority = 0;
+
+
+        selectedSymptoms.forEach(symptom => {
+            const data = symptomData[symptom];
+            if (data && data.riskLevel) {
+                const priority = riskPriority[data.riskLevel] || 0;
+                if (priority > highestPriority) {
+                    highestPriority = priority;
+                    highestRisk = data.riskLevel;
+                }
+            }
+        });
+
+
+        // Build detailed result from symptomData
+        let explanationText = "";
+        let allPrecautions = [];
+
+
+        selectedSymptoms.forEach(symptom => {
+            const data = symptomData[symptom];
+            if (data) {
+                explanationText += `• ${symptom}: ${data.explanation}\n`;
+                allPrecautions = allPrecautions.concat(data.precautions);
+            }
+        });
+
+
+        // Remove duplicates from precautions
+        const uniquePrecautions = [...new Set(allPrecautions)];
+
+
+        resultTitle.innerText = "Risk Level: " + highestRisk;
+        resultDescription.innerText =
+            explanationText +
+            "\nPrecautions / सावधानियां:\n" +
+            uniquePrecautions.map(p => `• ${p}`).join("\n") +
+            "\n\nBelt telemetry: HR " + heartRate + " bpm, Temp " + temperature + "°C, movement normal.";
+
+
+        // Hide steps after result
+        stepsBox.classList.add("hidden");
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+
+        return;
+    }
+
+
+    // Add belt info if active
+    if (beltSimulationActive) {
+        resultDescription.innerText +=
+            `\n\nBelt telemetry: HR ${heartRate} bpm, Temp ${temperature}°C, movement normal.`;
+    }
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+
+}
+
+
+
+/* ================= SERVER DEMO ================= */
+
+
+async function wakeServers() {
+    const wakeButton = document.querySelector(".wake");
+    const previewText = document.querySelector(".preview-text");
+
+
+    if (!wakeButton) return;
+
+
+    wakeButton.innerText = "Checking...";
+    wakeButton.disabled = true;
+
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/api/health");
+
+
+        if (!response.ok) {
+            throw new Error("Backend did not return OK");
+        }
+
+
+        const data = await response.json();
+
+
+        wakeButton.innerText = "Backend connected ✓";
+        wakeButton.style.color = "#4ce5b0";
+        wakeButton.style.background = "#18362e";
+
+
+        if (previewText) {
+            previewText.innerText =
+                "Backend connected · Full functionality enabled";
+        }
+
+
+        // Hide preview bar after successful connection
+        const previewBar = document.querySelector(".preview-bar");
+        if (previewBar) {
+            previewBar.style.display = "none";
+        }
+
+
+        alert(data.message || "MATERNAL_ASTRA backend is connected.");
+
+
+    } catch (error) {
+        wakeButton.innerText = "Backend unavailable";
+        wakeButton.style.color = "#ff9c86";
+
+
+        if (previewText) {
+            previewText.innerText =
+                "Frontend Preview Only. Please wake servers to enable backend functionality.";
+        }
+
+
+        alert(
+            "Backend is not running.\n\n" +
+            "Check the MATERNAL_ASTRA Backend black window.\n" +
+            "It must say: Application startup complete."
+        );
+    }
+}
+
+
+// Auto-run when page loads
+window.addEventListener("DOMContentLoaded", wakeServers);
+
+
+
+</script>
+
+
+</body>
+</html>
